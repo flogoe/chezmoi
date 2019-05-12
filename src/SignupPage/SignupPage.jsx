@@ -22,21 +22,39 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export const LoginPage = ({setIsLoggedInState}) => {
-
+export const SignupPage = ({ setIsLoggedInState }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    const [password_confirm, setPasswordConfirm] = useState("");
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
 
     const classes = useStyles();
     return (
         <div className={classes.formWrapper}>
 
-            <h2>Chezmoi</h2>
+            <h2>Sign up</h2>
 
             <form className={classes.form} noValidate autoComplete="off">
+                <TextField
+                    id="standard-name"
+                    label="First name"
+                    className={classes.textField}
+                    value={first_name}
+                    onChange={(e) => { setFirstName(e.target.value) }}
+                    margin="normal"
+                />
+
+                <TextField
+                    id="standard-name"
+                    label="Last name"
+                    className={classes.textField}
+                    value={last_name}
+                    onChange={(e) => { setLastName(e.target.value) }}
+                    margin="normal"
+                />
+
                 <TextField
                     id="standard-name"
                     label="Email"
@@ -49,9 +67,19 @@ export const LoginPage = ({setIsLoggedInState}) => {
                 <TextField
                     type="password"
                     id="standard-uncontrolled"
-                    label="Uncontrolled"
+                    label="Password"
                     value={password}
                     onChange={(e) => { setPassword(e.target.value) }}
+                    className={classes.textField}
+                    margin="normal"
+                />
+
+                <TextField
+                    type="password"
+                    id="standard-uncontrolled"
+                    label="Confirm Password"
+                    value={password_confirm}
+                    onChange={(e) => { setPasswordConfirm(e.target.value) }}
                     className={classes.textField}
                     margin="normal"
                 />
@@ -60,10 +88,10 @@ export const LoginPage = ({setIsLoggedInState}) => {
             </form>
             <Button variant="contained"
                 className={classes.button}
-                onClick={() => { 
+                onClick={() => {
                     localStorage.setItem("isLoggedIn", "true");
-                    window.location.href = window.location.origin + "/dining?userId="+email;
-                 }}>Login
+                    window.location.href = window.location.origin + "/dining?userId=" + email;
+                }}>Sign up
             </Button>
         </div>
     );

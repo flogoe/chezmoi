@@ -13,6 +13,7 @@ import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterUserPage } from './RegisterUserPage/RegisterUserPage';
 import { TopNavBar } from './TopNavBar';
 import { HistoryView } from './HistoryView';
+import {ManageEvent} from './manage_event'
 
 const drawerWidth = 240;
 const foodEventsStr = localStorage.getItem('events');
@@ -88,7 +89,7 @@ const App = (props) => {
         <Route path="/register-user" component={RegisterUserPage} />
         <Route path="/create-event" component={CreateEvent} />
         <Route path="/history" component={HistoryView} />
-        <Route path="/manage" component={ManageView} />
+        <Route path="/manage" component={ManageEvent} />
       </div>
     </div>
   );

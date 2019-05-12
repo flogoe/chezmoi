@@ -94,7 +94,7 @@ export const CreateEvent = ()=>{
   }
 
   return (
-      <div className={classes.root}>
+      <div backgroundColor="#D00606" className={classes.root}>
         <TextField
           id="title"
           type="text"
