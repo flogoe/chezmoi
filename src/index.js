@@ -7,15 +7,18 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { SignupPage } from "./SignupPage/SignupPage";
+import {WebsocketContext} from "./websocketContext";
+import {WebsocketStore} from "./services/websocketStore"
 
 const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
-
 ReactDOM.render(
   <ThemeProvider theme={theme}>
+    <WebsocketContext.Provider value={new WebsocketStore()}>
     <Router>
       <App/>
     </Router>
+    </WebsocketContext.Provider>
   </ThemeProvider>,
   document.getElementById('root'));
 
@@ -28,3 +31,4 @@ serviceWorker.unregister();
 //implement class
 //here load our file instea of App
 //material ui form
+

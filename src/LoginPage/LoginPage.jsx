@@ -65,6 +65,13 @@ export const LoginPage = ({setIsLoggedInState}) => {
                     window.location.href = window.location.origin + "/dining?userId="+email;
                  }}>Login
             </Button>
+
+            <Button variant="contained"
+                className={classes.button}
+                onClick={() => { 
+                    window.location.href = window.location.origin + "/signup";
+                 }}>Register
+            </Button>
         </div>
     );
 }

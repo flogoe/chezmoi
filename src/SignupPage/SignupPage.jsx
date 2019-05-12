@@ -1,7 +1,9 @@
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/styles";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {WebsocketContext} from './../websocketContext';
+import { WebsocketStore } from '../services/websocketStore';
 
 
 const useStyles = makeStyles(theme => ({
@@ -29,6 +31,7 @@ export const SignupPage = ({ setIsLoggedInState }) => {
     const [password_confirm, setPasswordConfirm] = useState("");
     const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
+    const websocketStore = useContext(WebsocketContext);
 
     const classes = useStyles();
     return (
@@ -89,10 +92,25 @@ export const SignupPage = ({ setIsLoggedInState }) => {
             <Button variant="contained"
                 className={classes.button}
                 onClick={() => {
-                    localStorage.setItem("isLoggedIn", "true");
-                    window.location.href = window.location.origin + "/dining?userId=" + email;
+                    window.location.href = window.location.origin + "/login";
+                }}>Back
+            </Button>
+            <Button variant="contained"
+                className={classes.button}
+                onClick={() => {
+                const user = {
+                    email: email,
+                    name: {
+                        firstname: first_name,
+                        lastname: last_name
+                    },
+                    salt: window.crypto.getRandomValues(new Uint32Array(1))[0],
+                    password: password
+                }
+                websocketStore.createUser(user);
                 }}>Sign up
             </Button>
+
         </div>
     );
 }
